@@ -30,16 +30,14 @@ public class UserController {
     @PostMapping("/add")
     @CachePut(value = "users", key="#result.id")
     @CacheEvict(value = "users", allEntries = true)
-    public Users saveUser(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
-        Users user = new Users();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
+    public Users saveUser(Users user) {
         return userService.saveUser(user);
     }
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleDuplicateValueException(DataIntegrityViolationException exception) {
         return new ResponseEntity<>("A user with the same value already exists.", HttpStatus.CONFLICT);
     }
+
+
 
 }
