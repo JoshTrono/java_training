@@ -3,7 +3,9 @@ package com.revature.TaskManager.controller;
 
 import com.revature.TaskManager.entity.Users;
 import com.revature.TaskManager.service.UserService;
+import com.revature.TaskManager.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -30,7 +32,9 @@ public class UserController {
     @PostMapping("/add")
     @CachePut(value = "users", key="#result.id")
     @CacheEvict(value = "users", allEntries = true)
-    public Users saveUser(Users user) {
+    public Users saveUser(@RequestBody UserDTO user) {
+        Logger logger = org.slf4j.LoggerFactory.getLogger(UserController.class);
+        logger.info(user.toString());
         return userService.saveUser(user);
     }
     @ExceptionHandler(DataIntegrityViolationException.class)

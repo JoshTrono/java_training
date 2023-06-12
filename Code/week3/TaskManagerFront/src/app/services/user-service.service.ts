@@ -13,6 +13,8 @@ export class UserServiceService {
   constructor(private http: HttpClient) { }
 
   postRegisterUser(user: User) {
-    return this.http.post(`${this.apiURL}/register`, user);
+    console.log("postRegisterUser");
+    console.log(user);
+    return this.http.post<any>(`${this.apiURL}/user/add`, user);
   }
 }

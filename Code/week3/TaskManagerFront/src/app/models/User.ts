@@ -1,28 +1,22 @@
 interface UserInterface {
   username: string;
   password: string;
-  firstName: string;
-  lastName: string;
-  role: string;
+  email: string;
 }
 
 export class User implements UserInterface {
   username: string;
   password: string;
-  firstName: string;
-  lastName: string;
-  role: string;
+  email: string;
   // static username: string;
   // static password: string;
   // static firstName: string;
   // static lastName: string;
   // static role: string;
 
-  constructor(username: string, password: string, firstName: string, lastName: string, role: string) {
+  constructor(username: string, password: string, email: string) {
     this.username = username;
     this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.role = role;
+    this.email = email;
   }
 }

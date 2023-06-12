@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/User';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-session-component',
@@ -8,21 +10,28 @@ import { User } from 'src/app/models/User';
 })
 export class SessionComponentComponent {
 
+  constructor(private http: HttpClient, private userService: UserServiceService) {}
+
+  private api = "http://www.localhost:8080"
+
   user: any;
 
   userForm = {
     username: '',
     password: '',
-    firstName: '',
-    lastName: '',
-    role: ''
+    email: '',
   }
 
   //userForm: User | undefined;
 
   saveUser(){
-    const { username, password, firstName, lastName, role } = this.userForm;
-    console.log({ username, password, firstName, lastName, role});
+    const { username, password, email} = this.userForm;
+    let observable = this.userService.postRegisterUser(new User(username, password, email));
+    observable.subscribe((response) => {
+      console.log(response);
+      this.user = response;
+    });
+    return this.user;
   }
 
 }
