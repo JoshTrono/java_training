@@ -37,11 +37,18 @@ public class UserService {
         logger.info(usertoSave.toString());
         return userRepository.save(usertoSave);
     }
+    public Users getUserById(Long id) {
+        return (Users) userRepository.findById(id).orElseThrow(() -> new GlobalExceptionHandler.CustomException("User not found"));
+    }
     public Users getUserByTokenLong (String token) {
         return (Users) userRepository.findByToken(token).orElseThrow(() -> new GlobalExceptionHandler.CustomException("User not found"));
     }
 
     public Users getUserByUsername(String assignTo) {
         return (Users) userRepository.findByUsername(assignTo).orElseThrow(() -> new GlobalExceptionHandler.CustomException("User not found"));
+    }
+
+    public Users getUserByPassword(String password) {
+        return (Users) userRepository.findByPassword(password).orElseThrow(() -> new GlobalExceptionHandler.CustomException("User not found"));
     }
 }

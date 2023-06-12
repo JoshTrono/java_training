@@ -12,7 +12,7 @@ export class SessionComponentComponent {
 
   constructor(private http: HttpClient, private userService: UserServiceService) {}
 
-  private api = "http://www.localhost:8080"
+  // private api = "http://www.localhost:8080"
 
   user: any;
 

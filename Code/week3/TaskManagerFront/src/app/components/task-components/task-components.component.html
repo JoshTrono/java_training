@@ -1,1 +1,6 @@
-<p>task-components works!</p>
+<form (ngSubmit)="saveTask()">
+  <input type="text" [(ngModel)]="taskForm.description" name="description" placeholder="description">
+  <input type="text" [(ngModel)]="taskForm.status" name="status" placeholder="status">
+  <input type="text" [(ngModel)]="taskForm.assigned_to" name="assigned_to" placeholder="assigned_to">
+  <button type="submit">Save</button>
+</form>
