@@ -31,13 +31,13 @@ public class TaskService {
 
     public List<Task> getMyTasks(String token) {
         //userService.getUserByTokenLong(token);
-        return taskRepository.findAllByAssignedTo(userService.getUserByTokenLong(token));
+        return taskRepository.findAllByAssigned(userService.getUserByTokenLong(token));
 
     }
 
     public Task assignTask(Long taskId, String assignTo) {
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new GlobalExceptionHandler.CustomException("Task not found"));
-        task.setAssignedTo(userService.getUserByUsername(assignTo));
+        task.setAssigned(userService.getUserByUsername(assignTo));
         return taskRepository.save(task);
     }
 }

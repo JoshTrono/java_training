@@ -1,17 +1,21 @@
 interface TaskInterface {
   description: string;
   status: string;
-  assigned_to: string;
+  assignedTo: number;
+  assigned: Object;
+
 }
 
 export class Task implements TaskInterface {
   description: string;
   status: string;
-  assigned_to: string;
+  assignedTo: number;
+  assigned: Object;
 
-  constructor(description: string, status: string, assigned_to: string) {
+  constructor(description: string, status: string, assignedTo: number, assigned: Object) {
     this.description = description;
     this.status = status;
-    this.assigned_to = assigned_to;
+    this.assignedTo = assignedTo;
+    this.assigned = assigned;
   }
 }

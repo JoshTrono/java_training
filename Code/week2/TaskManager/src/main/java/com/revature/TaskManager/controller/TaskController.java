@@ -6,7 +6,6 @@ import com.revature.TaskManager.service.TaskService;
 import com.revature.TaskManager.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -35,13 +34,13 @@ public class TaskController {
     @PostMapping("/save")
     @CacheEvict(value = "tasks", allEntries = true)
     @CachePut(value = "tasks", key="#result.id")
-    public Task saveTask(@RequestBody TaskDTO task) {
-
+    public Task saveTask(@RequestBody TaskDTO task, @RequestParam String assign) {
+        System.out.println(task.toString());
         Task taskToSave = new Task();
         taskToSave.setDescription(task.getDescription());
         taskToSave.setStatus(task.getStatus());
-        taskToSave.setAssignedTo(task.getAssignTo());
-        taskToSave.setAssignedTo(userService.getUserById(task.getId()));
+        //taskToSave.setAssignedto(task.getAssignto());
+        taskToSave.setAssigned(userService.getUserById(Long.parseLong(String.valueOf(assign))));
         return taskService.saveTask(taskToSave);
     }
 

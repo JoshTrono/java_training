@@ -5,14 +5,13 @@ import com.revature.TaskManager.entity.Users;
 public class TaskDTO {
     private String description;
     private String status;
-    private Users assignTo;
+    private String assign;
     private Long id;
 
-    public TaskDTO(String description, String status, Users assignTo, Long id) {
+    public TaskDTO(String description, String status, String assign) {
         this.description = description;
         this.status = status;
-        this.assignTo = assignTo;
-        this.id = id;
+        this.assign = assign;
     }
 
     public TaskDTO() {
@@ -23,7 +22,7 @@ public class TaskDTO {
         return "TaskDTO{" +
                 "description='" + description + '\'' +
                 ", status='" + status + '\'' +
-                ", assignTo='" + assignTo + '\'' +
+                ", assignTo='" + assign + '\'' +
                 '}';
     }
 
@@ -51,11 +50,11 @@ public class TaskDTO {
         this.status = status;
     }
 
-    public Users getAssignTo() {
-        return assignTo;
+    public String getAssign() {
+        return assign;
     }
 
-    public void setAssignTo(Users assignTo) {
-        this.assignTo = assignTo;
+    public void setAssign(String assign) {
+        this.assign = assign;
     }
 }

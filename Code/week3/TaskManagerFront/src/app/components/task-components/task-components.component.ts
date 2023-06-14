@@ -9,21 +9,34 @@ import { TaskServiceService } from 'src/app/services/task-service.service';
 })
 export class TaskComponentsComponent {
 
+  tasks: Task[] | undefined = undefined;
+
     constructor(private taskService: TaskServiceService) { }
+
 
     taskForm = {
       description: '',
       status: '',
-      assigned_to: '',
+      assignedTo: '',
+
+
     }
 
     saveTask(){
-      const { description, status, assigned_to} = this.taskForm;
+      const { description, status, assignedTo} = this.taskForm;
+      console.log(assignedTo)
 
-      console.log(description, status, assigned_to);
-      let observable = this.taskService.postTask(new Task(description, status, assigned_to));
+      let observable = this.taskService.postTask(description,status, assignedTo);
       observable.subscribe((response) => {
         console.log(response);
       });
+    }
+    ShowMyTasks(){
+      let observable = this.taskService.getTasks();
+      observable.subscribe((response) => {
+        console.log(response);
+        this.tasks = response;
+      });
+
     }
 }
