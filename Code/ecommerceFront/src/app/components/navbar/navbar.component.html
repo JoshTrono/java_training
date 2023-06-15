@@ -1,1 +1,3 @@
-<button (click)="clickButton('login')">Login</button>
+<button (click)="clickButton('login')" *ngIf="localStorage.getItem('token') == null">Login</button>
+<button (click)="logout()" *ngIf="localStorage.getItem('token') !== null">Logout</button>
+

@@ -18,8 +18,14 @@ export class LoginComponent {
   login() {
     const { username, password } = this.userForm;
     let observable = this.sessionService.login(username, password);
-    observable.subscribe((response) => {
+    observable.subscribe((response: any) => {
       console.log(response);
+      //sessionStorage.setItem('token', response.token);
+      if (response.token == 'login failed') {
+        alert('login failed');
+      } else {
+      localStorage.setItem('token', response.token);
+      }
     });
     //console.log(username, password)
   }
