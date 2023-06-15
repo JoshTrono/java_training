@@ -14,4 +14,8 @@ export class SessionService {
     const param = new HttpParams().set('username', username).set('password', password);
     return this.http.post(`${this.api}/login`, param);
   }
+  register(registerForm: any) {
+    //const param = new HttpParams().set('firstName', firstName).set('lastName', lastName).set('username', username).set('password', password).set('email', email);
+    return this.http.post(`${this.api}/register`, registerForm);
+  }
 }

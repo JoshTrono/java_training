@@ -1,17 +1,17 @@
 package com.revature.ecommerce.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.ecommerce.entity.User;
 import com.revature.ecommerce.repository.UserRepository;
+import com.revature.ecommerce.dto.registerDTO;
 import com.revature.ecommerce.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +25,10 @@ public class SessionController {
     UserRepository userRepository;
     @Autowired
     AuthenticationService authenticationService;
+
+
+
+    ObjectMapper objectMapper = new ObjectMapper();
 
 
     @PostMapping("/login")
@@ -50,11 +54,21 @@ public class SessionController {
         return authenticationService.validateToken(token);
     }
 
-    @PostMapping("/register")
+    @PostMapping(value = "/register", produces = "application/json")
     @ResponseBody
-    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String role) {
+    public String register(@RequestBody registerDTO registerdto) throws JsonProcessingException {
         // todo: check if username is already taken
-        userRepository.save(new User(username, password, firstName, lastName, role)); // save the user to the database
-        return "registered";
+        String username = registerdto.getUsername();
+        String password = registerdto.getPassword();
+        String firstName = registerdto.getFirstName();
+        String lastName = registerdto.getLastName();
+        String role = "user";
+        try {
+            userRepository.save(new User(username, password, firstName, lastName, role));
+        } catch (Exception e) {
+            return objectMapper.writeValueAsString(Collections.singletonMap("Error", "Username already taken or invalid input"));
+        }
+        // save the user to the database
+        return objectMapper.writeValueAsString(Collections.singletonMap("register", "success"));
     }
 }

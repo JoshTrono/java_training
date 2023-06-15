@@ -1,3 +1,8 @@
+<button>Shopping Cart</button>
+<button>Orders</button>
+<button>products</button>
 <button (click)="clickButton('login')" *ngIf="localStorage.getItem('token') == null">Login</button>
 <button (click)="logout()" *ngIf="localStorage.getItem('token') !== null">Logout</button>
+<button (click)="clickButton('register')" *ngIf="localStorage.getItem('token') == null">Register</button>
+
 
