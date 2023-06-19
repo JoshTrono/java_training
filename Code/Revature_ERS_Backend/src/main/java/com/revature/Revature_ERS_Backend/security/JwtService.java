@@ -18,7 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "C39CA2C4A82C69DAEA3ABAC279AE3";
+    private static final String SECRET_KEY = "CmWtr7yJ8FwPh2jH9stxi4eAIL5WnSyb9aM/c4UszKXK+MdSwGrglXHBmWAL9dPDAVOjR0os9D/CRmQOdadDtWJOr5YM9wW6Jijilj2/IMKgA+b6ub4rR3vI80MF9eKKlIcq4ot347LT+ixABnbm1HwG9vBZzKqNBw7sFrml6Cgw91s3rzBWWQOjvIqPK+cePc0BT38sufTSzMw8kirfLCisIiSetZBchNwGaVCi5g9MUuEpK2RoJkDPydtY6NUzjheZ8zvaBhvx8VdaVuiT60lZav86XlH5coup5tovB8UIsdZqZlsIWUzqLUXs2+socglRkTVsoV4XwFvFF5P0ieJepLnXMrMe207InP8Arl4=\n";
     public String extractUsername(String jwt) {
         return extractClaim(jwt, Claims::getSubject);
     }
@@ -37,7 +37,7 @@ public class JwtService {
                 .setClaims(extractClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 60))
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
