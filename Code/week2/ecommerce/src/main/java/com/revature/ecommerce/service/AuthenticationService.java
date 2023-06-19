@@ -39,8 +39,12 @@ public class AuthenticationService {
                         .withClaim("id", id)
                         .withClaim("role", role)
                         .sign(algorithm);
+                Token token = new Token(jwt, user);
+                if (tokenRepository.findByUserId(id) != null) { // id is the user id in this case
+                    tokenRepository.delete(tokenRepository.findByUserId(id));
+                }
 
-                tokenRepository.save(new Token(jwt, user));
+                tokenRepository.save(token);
                 return jwt;
 
             }

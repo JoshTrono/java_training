@@ -1,0 +1,7 @@
+<p>session-component works!</p>
+<form (ngSubmit)="saveUser()">
+    <input type="text" [(ngModel)]="userForm.username" name="username" placeholder="username">
+    <input type="text" [(ngModel)]="userForm.password" name="password" placeholder="password">
+    <input type="text" [(ngModel)]="userForm.email" name="email" placeholder="email">
+    <button type="submit">Save</button>
+</form>

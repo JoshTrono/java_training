@@ -1,0 +1,11 @@
+<form (ngSubmit)="register()">
+    <h1>Register</h1>
+    <p *ngIf="error">{{error}}</p>
+    <p *ngIf="success">{{success}}</p>
+    <input type="text" [(ngModel)]="registerForm.firstName" name="firstname" placeholder="First name">
+    <input type="text" [(ngModel)]="registerForm.lastName" name="lastname" placeholder="Last name">
+    <input type="text" [(ngModel)]="registerForm.username" name="username" placeholder="username">
+    <input type="text" [(ngModel)]="registerForm.email" name="email" placeholder="email">
+    <input type="text" [(ngModel)]="registerForm.password" name="password" placeholder="password">
+    <button type="submit">Register</button>
+</form>

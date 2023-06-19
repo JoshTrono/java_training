@@ -20,8 +20,8 @@ public class Task {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "assigned_to")
-    private Users assignedTo;
+    @JoinColumn(name = "assigned")
+    private Users assigned;
 
 
 }
