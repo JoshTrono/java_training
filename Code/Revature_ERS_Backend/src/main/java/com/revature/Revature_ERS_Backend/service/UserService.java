@@ -7,6 +7,8 @@ import com.revature.Revature_ERS_Backend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -15,10 +17,24 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity<AuthenticationResponse> updateUser(Long id) {
+    public ResponseEntity updateUser(Long id) {
         User user = userRepository.findById(id).orElseThrow();
         user.setRole(Role.ADMIN);
         userRepository.save(user);
-        return ResponseEntity.ok(AuthenticationResponse.builder().build());
+        return ResponseEntity.ok("User updated");
+    }
+
+    public List<User> getUsers() {
+        return userRepository.findAll();
+
+    }
+
+    public Long getUserId(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow();
+        return user.getId();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow();
     }
 }

@@ -28,6 +28,7 @@ public class SecurityConfiguration {
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/reimbursements/**").hasAnyAuthority(Role.USER.toString(), Role.ADMIN.toString())
                         .requestMatchers("/api/v1/admin/**").hasAuthority(Role.ADMIN.toString())
                         .anyRequest().authenticated()
                 )

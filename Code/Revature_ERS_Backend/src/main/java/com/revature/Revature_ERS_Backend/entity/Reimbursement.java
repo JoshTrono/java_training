@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 public class Reimbursement {
 
     @Id
+    @SequenceGenerator(name="reimbursement_id_seq", sequenceName="reimbursement_id_seq", allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="reimbursement_id_seq")
     private Long id;
 
     private int amount;
