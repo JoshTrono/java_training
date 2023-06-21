@@ -19,6 +19,12 @@ public class ReimbursementController {
         this.reimbursementService = reimbursementService;
     }
 
+    /**
+     *
+     * @param request request body with amount and description
+     * @param token token of the user
+     * @return created reimbursement
+     */
     @PostMapping("/create")
     public Reimbursement createReimbursement(@RequestBody CreateRepositoryRequest request, @RequestHeader("Authorization") String token) {
 
@@ -26,14 +32,34 @@ public class ReimbursementController {
         String description = request.getDescription();
         return reimbursementService.createReimbursement(amount, description, token);
     }
+
+    /**
+     *
+     * @param token token of the user
+     * @return list of reimbursements
+     */
     @GetMapping
     public List<Reimbursement> getReimbursements(@RequestHeader("Authorization") String token) {
         return reimbursementService.getReimbursementsFromUser(extractToken(token));
     }
+
+    /**
+     *
+     * @param id id of the reimbursement to be updated
+     * @param reimbursement reimbursement object with updated fields
+     * @param token token of the user
+     * @return updated reimbursement
+     */
     @PutMapping("/{id}")
     public Reimbursement updateReimbursement(@PathVariable Long id, @RequestBody Reimbursement reimbursement, @RequestHeader("Authorization") String token) {
         return reimbursementService.updateReimbursement(id, reimbursement, extractToken(token));
     }
+
+    /**
+     *
+     * @param token token of the user
+     * @return list of reimbursements
+     */
     private String extractToken(String token) {
         return token.split(" ")[1].trim();
     }

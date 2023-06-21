@@ -28,6 +28,7 @@ public class ReimbursementService {
         return reimbursementRepository.findAll();
     }
 
+    // Create a reimbursement
     public Reimbursement createReimbursement(int amount, String description, String token) {
 
         String username = jwtService.extractUsername(token.split(" ")[1].trim());
@@ -42,13 +43,18 @@ public class ReimbursementService {
         return reimbursementRepository.save(reimbursement);
     }
 
+    /**
+     * Get all reimbursements from a user
+     * @param token JWT token
+     * @return List of reimbursements
+     */
     public List<Reimbursement> getReimbursementsFromUser(String token) {
         String username = jwtService.extractUsername(token);
         Long id = userService.getUserId(username);
         User user = userService.getUserById(id);
         return reimbursementRepository.findAllByUser(user);
     }
-
+    // Update a reimbursement
     public Reimbursement updateReimbursement(Long id, Reimbursement reimbursement, String s) {
         String username = jwtService.extractUsername(s);
         Long userId = userService.getUserId(username);

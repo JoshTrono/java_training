@@ -22,16 +22,31 @@ public class AdminController {
         this.userService = userService;
     }
 
+    /**
+     * This is to get reimbursements from all users only for admins
+     *
+     * @return list of reimbursements
+     */
     @GetMapping("/reimbursement")
     public List<Reimbursement> getReimbursement() {
         return reimbursementService.getReimbursements();
     }
 
+    /**
+     * This is to get all users only for admins
+     * @return list of users
+     */
     @GetMapping("/users")
     public List<User> getUser() {
         return userService.getUsers();
     }
 
+
+    /**
+     * This is to get a user by id only for admins
+     * @param id id of the user
+     * @return user with change of role to admin
+     */
     @PutMapping("/user/{id}")
     public ResponseEntity updateUser (@PathVariable Long id) {
         return userService.updateUser(id);
