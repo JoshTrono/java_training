@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Reimbursement ID</th>
+    <th>Employee email</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let reimbursement of reimbursements">
+    <td>{{reimbursement.id}}</td>
+    <td>{{reimbursement.user.email}}</td>
+    <td>{{reimbursement.amount}}</td>
+    <td>{{reimbursement.description}}</td>
+    <td>{{reimbursement.status}}</td>
+  </tr>
+</table>
