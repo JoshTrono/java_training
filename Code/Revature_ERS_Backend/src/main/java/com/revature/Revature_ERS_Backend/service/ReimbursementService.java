@@ -37,6 +37,7 @@ public class ReimbursementService {
                 .amount(amount)
                 .description(description)
                 .user(user)
+                .status("PENDING")
                 .build();
         return reimbursementRepository.save(reimbursement);
     }
@@ -46,5 +47,25 @@ public class ReimbursementService {
         Long id = userService.getUserId(username);
         User user = userService.getUserById(id);
         return reimbursementRepository.findAllByUser(user);
+    }
+
+    public Reimbursement updateReimbursement(Long id, Reimbursement reimbursement, String s) {
+        String username = jwtService.extractUsername(s);
+        Long userId = userService.getUserId(username);
+        User user = userService.getUserById(userId);
+        Reimbursement reimbursement1 = reimbursementRepository.findById(id).orElseThrow();
+        if (reimbursement1.getUser().getId().equals(user.getId())) {
+            if (reimbursement.getAmount() != 0) {
+                reimbursement1.setAmount(reimbursement.getAmount());
+            }
+            if (reimbursement.getDescription() != null) {
+                reimbursement1.setDescription(reimbursement.getDescription());
+            }
+            if (reimbursement.getStatus() != null && reimbursement.getStatus().equals("Pending")) {
+                reimbursement1.setStatus(reimbursement.getStatus());
+            }
+            return reimbursementRepository.save(reimbursement1);
+        }
+        return null;
     }
 }

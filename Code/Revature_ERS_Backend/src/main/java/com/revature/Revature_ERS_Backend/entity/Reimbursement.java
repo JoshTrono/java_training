@@ -23,6 +23,8 @@ public class Reimbursement {
 
     private String description;
 
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

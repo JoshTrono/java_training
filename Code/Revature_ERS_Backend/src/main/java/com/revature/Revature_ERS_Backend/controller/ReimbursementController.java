@@ -28,7 +28,13 @@ public class ReimbursementController {
     }
     @GetMapping
     public List<Reimbursement> getReimbursements(@RequestHeader("Authorization") String token) {
-        token = token.split(" ")[1].trim();
-        return reimbursementService.getReimbursementsFromUser(token);
+        return reimbursementService.getReimbursementsFromUser(extractToken(token));
+    }
+    @PutMapping("/{id}")
+    public Reimbursement updateReimbursement(@PathVariable Long id, @RequestBody Reimbursement reimbursement, @RequestHeader("Authorization") String token) {
+        return reimbursementService.updateReimbursement(id, reimbursement, extractToken(token));
+    }
+    private String extractToken(String token) {
+        return token.split(" ")[1].trim();
     }
 }
