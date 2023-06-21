@@ -26,4 +26,9 @@ public class ReimbursementController {
         String description = request.getDescription();
         return reimbursementService.createReimbursement(amount, description, token);
     }
+    @GetMapping
+    public List<Reimbursement> getReimbursements(@RequestHeader("Authorization") String token) {
+        token = token.split(" ")[1].trim();
+        return reimbursementService.getReimbursementsFromUser(token);
+    }
 }

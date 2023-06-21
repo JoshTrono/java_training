@@ -40,4 +40,11 @@ public class ReimbursementService {
                 .build();
         return reimbursementRepository.save(reimbursement);
     }
+
+    public List<Reimbursement> getReimbursementsFromUser(String token) {
+        String username = jwtService.extractUsername(token);
+        Long id = userService.getUserId(username);
+        User user = userService.getUserById(id);
+        return reimbursementRepository.findAllByUser(user);
+    }
 }
