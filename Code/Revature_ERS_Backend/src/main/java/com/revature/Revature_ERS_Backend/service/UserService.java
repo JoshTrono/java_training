@@ -1,6 +1,5 @@
 package com.revature.Revature_ERS_Backend.service;
 
-import com.revature.Revature_ERS_Backend.auth.AuthenticationResponse;
 import com.revature.Revature_ERS_Backend.entity.Role;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.repository.UserRepository;

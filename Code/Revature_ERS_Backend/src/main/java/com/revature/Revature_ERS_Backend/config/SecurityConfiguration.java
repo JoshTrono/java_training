@@ -1,9 +1,7 @@
 package com.revature.Revature_ERS_Backend.config;
 
 import com.revature.Revature_ERS_Backend.entity.Role;
-import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.security.JwtAuthenticationFilter;
-import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

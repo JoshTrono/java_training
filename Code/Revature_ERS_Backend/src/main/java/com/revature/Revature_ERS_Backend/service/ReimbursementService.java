@@ -4,8 +4,6 @@ import com.revature.Revature_ERS_Backend.entity.Reimbursement;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.repository.ReimbursementRepository;
 import com.revature.Revature_ERS_Backend.security.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

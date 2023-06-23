@@ -1,9 +1,5 @@
 package com.revature.Revature_ERS_Backend.auth;
 
-import com.revature.Revature_ERS_Backend.auth.AuthenticationRequest;
-import com.revature.Revature_ERS_Backend.auth.AuthenticationService;
-import com.revature.Revature_ERS_Backend.auth.AuthenticationResponse;
-import com.revature.Revature_ERS_Backend.auth.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

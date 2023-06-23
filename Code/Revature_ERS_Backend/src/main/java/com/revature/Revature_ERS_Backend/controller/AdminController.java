@@ -1,11 +1,9 @@
 package com.revature.Revature_ERS_Backend.controller;
 
-import com.revature.Revature_ERS_Backend.auth.AuthenticationResponse;
 import com.revature.Revature_ERS_Backend.entity.Reimbursement;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.service.ReimbursementService;
 import com.revature.Revature_ERS_Backend.service.UserService;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
