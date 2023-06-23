@@ -1,15 +1,10 @@
 package com.revature.Revature_ERS_Backend.auth;
 
-import com.revature.Revature_ERS_Backend.auth.AuthenticationRequest;
-import com.revature.Revature_ERS_Backend.auth.AuthenticationService;
-import com.revature.Revature_ERS_Backend.auth.AuthenticationResponse;
-import com.revature.Revature_ERS_Backend.auth.RegisterRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -20,6 +15,8 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {
+
+
         return ResponseEntity.ok(authenticationService.register(registerRequest));
     }
 
@@ -28,6 +25,10 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
 
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<String> handleUserAlreadyExistsException(UserAlreadyExistsException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 
 }
 
