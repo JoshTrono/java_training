@@ -1,24 +1,28 @@
-<form (ngSubmit)="createReimbursement()">
-  <input type="text" [(ngModel)]="reimbursementForm.amount" name="amount" placeholder="Amount">
-  <input type="text" [(ngModel)]="reimbursementForm.description" name="description" placeholder="Description">
-  <button type="submit">Create Reimbursement</button>
+<form (ngSubmit)="createReimbursement()" class="form-group">
+  <input type="text" [(ngModel)]="reimbursementForm.amount" name="amount" placeholder="Amount" class="form-check form-check-inline">
+  <input type="text" [(ngModel)]="reimbursementForm.description" name="description" placeholder="Description" class="form-check form-check-inline">
+  <button type="submit" class="btn btn-secondary btn-sm">Create Reimbursement</button>
 </form>
 
 
-<table>
-  <tr>
-    <th>Reimbursement ID</th>
-    <th>Employee email</th>
-    <th>Amount</th>
-    <th>Description</th>
-    <th>Status</th>
-  </tr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="col">Reimbursement ID</th>
+      <th class="col">Employee email</th>
+      <th class="col">Amount</th>
+      <th class="col">Description</th>
+      <th class="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
   <tr *ngFor="let reimbursement of reimbursements">
-    <td>{{reimbursement.id}}</td>
+    <th>{{reimbursement.id}}</th>
     <td>{{reimbursement.user.email}}</td>
     <td>{{reimbursement.amount}}</td>
     <td>{{reimbursement.description}}</td>
     <td>{{reimbursement.status}}</td>
-    <button (click)="deleteReimbursement(reimbursement.id)">Delete</button>
+    <button (click)="deleteReimbursement(reimbursement.id)" class="btn btn-primary btn-sm" >Delete</button>
   </tr>
+  </tbody>
 </table>
