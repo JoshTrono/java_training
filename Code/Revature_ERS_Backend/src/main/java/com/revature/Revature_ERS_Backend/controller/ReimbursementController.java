@@ -3,6 +3,7 @@ package com.revature.Revature_ERS_Backend.controller;
 import com.revature.Revature_ERS_Backend.entity.Reimbursement;
 import com.revature.Revature_ERS_Backend.models.CreateRepositoryRequest;
 import com.revature.Revature_ERS_Backend.service.ReimbursementService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,6 +61,13 @@ public class ReimbursementController {
      * @param token token of the user
      * @return list of reimbursements
      */
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteReimbursement(@PathVariable Long id, @RequestHeader("Authorization") String token) {
+        return reimbursementService.deleteReimbursement(id, extractToken(token));
+    }
+
+
     private String extractToken(String token) {
         return token.split(" ")[1].trim();
     }

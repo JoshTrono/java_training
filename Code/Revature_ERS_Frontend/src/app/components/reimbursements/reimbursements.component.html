@@ -1,3 +1,10 @@
+<form (ngSubmit)="createReimbursement()">
+  <input type="text" [(ngModel)]="reimbursementForm.amount" name="amount" placeholder="Amount">
+  <input type="text" [(ngModel)]="reimbursementForm.description" name="description" placeholder="Description">
+  <button type="submit">Create Reimbursement</button>
+</form>
+
+
 <table>
   <tr>
     <th>Reimbursement ID</th>
@@ -12,5 +19,6 @@
     <td>{{reimbursement.amount}}</td>
     <td>{{reimbursement.description}}</td>
     <td>{{reimbursement.status}}</td>
+    <button (click)="deleteReimbursement(reimbursement.id)">Delete</button>
   </tr>
 </table>

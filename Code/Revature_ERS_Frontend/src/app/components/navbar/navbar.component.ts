@@ -9,12 +9,21 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
 
+  Admin: boolean = false;
+
   constructor(private route: Router) {
 
   }
 
   clickedButton(nav: String) {
     this.route.navigate([nav]);
+  }
+  isAdmin() {
+    if (localStorage.getItem('role') === 'ADMIN') {
+      this.Admin = true;
+    } else {
+      this.Admin = false;
+    }
   }
 
 }

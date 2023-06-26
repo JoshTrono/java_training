@@ -4,6 +4,7 @@ import com.revature.Revature_ERS_Backend.entity.Reimbursement;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.repository.ReimbursementRepository;
 import com.revature.Revature_ERS_Backend.security.JwtService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,5 +72,17 @@ public class ReimbursementService {
             return reimbursementRepository.save(reimbursement1);
         }
         return null;
+    }
+
+    public ResponseEntity deleteReimbursement(Long id, String s) {
+        String username = jwtService.extractUsername(s);
+        Long userId = userService.getUserId(username);
+        User user = userService.getUserById(userId);
+        Reimbursement reimbursement = reimbursementRepository.findById(id).orElseThrow();
+        if (reimbursement.getUser().getId().equals(user.getId())) {
+            reimbursementRepository.delete(reimbursement);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 }
