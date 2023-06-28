@@ -36,4 +36,9 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow();
     }
+
+    public ResponseEntity deleteUser(Long id) {
+        userRepository.deleteById(id);
+        return ResponseEntity.ok("User deleted");
+    }
 }

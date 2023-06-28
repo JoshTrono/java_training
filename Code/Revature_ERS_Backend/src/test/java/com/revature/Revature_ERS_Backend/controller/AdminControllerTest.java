@@ -24,8 +24,10 @@ import org.junit.jupiter.api.Disabled;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
+@SpringBootTest
 class AdminControllerTest {
     /**
      * Method under test: {@link AdminController#getReimbursement()}

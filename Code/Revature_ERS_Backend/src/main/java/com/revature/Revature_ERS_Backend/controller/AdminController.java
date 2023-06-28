@@ -50,4 +50,8 @@ public class AdminController {
         return userService.updateUser(id);
     }
 
+    public ResponseEntity deleteUser (@PathVariable Long id) {
+        return userService.deleteUser(id);
+    }
+
 }
