@@ -13,7 +13,8 @@ export class LoginComponent {
     password: ''
   }
 
-  private navbar: NavbarComponent | undefined;
+
+
 
 
   constructor(private authentication: AuthenticationService) { }
@@ -23,15 +24,8 @@ export class LoginComponent {
       localStorage.setItem('token', response.token);
       this.authentication.getRole(response.token).subscribe((response2) => {
         localStorage.setItem('role', response2);
-        if (this.navbar) {
-          if (localStorage.getItem('role') === 'ADMIN') {
-            this.navbar.Admin = true;
-          } else {
-            this.navbar.Admin = false;
-          }
-        }
       });
     });
+    this.authentication.isAdmin();
   }
-
 }

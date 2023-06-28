@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReimbursementService } from 'src/app/services/reimbursement.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ReimbursementService } from 'src/app/services/reimbursement.service';
 })
 export class ReimbursementsComponent {
 
-  constructor(private reimbursementService: ReimbursementService) { }
+  constructor(private reimbursementService: ReimbursementService, private route: Router) { }
 
   reimbursementForm = {
     amount: '',
@@ -17,11 +18,19 @@ export class ReimbursementsComponent {
 
   reimbursements: any;
 
+  Admin = false;
+
   ngOnInit() {
     let observable = this.reimbursementService.getReimbursements();
     observable.subscribe((response: any) => {
       this.reimbursements = response;
     });
+    if (localStorage.getItem('role') === 'ADMIN') {
+      this.Admin = true;
+    } else {
+      this.Admin = false;
+    }
+
   }
 
   createReimbursement() {
@@ -37,5 +46,8 @@ export class ReimbursementsComponent {
     observable3.subscribe((response: any) => {
       this.ngOnInit();
     });
+  }
+  clickedButton(nav: String) {
+    this.route.navigate([nav]);
   }
 }

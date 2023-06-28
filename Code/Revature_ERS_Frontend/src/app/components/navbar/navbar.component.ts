@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,21 +10,25 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
 
-  Admin: boolean = false;
+  Admin = this.auth.Admin;
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private cdr : ChangeDetectorRef, private auth: AuthenticationService) {
 
   }
+  ngOnInit() {
+    window.onstorage = () => {
+      // Update component logic
+      this.cdr.detectChanges();
+    };
+  }
+
 
   clickedButton(nav: String) {
     this.route.navigate([nav]);
   }
-  isAdmin() {
-    if (localStorage.getItem('role') === 'ADMIN') {
-      this.Admin = true;
-    } else {
-      this.Admin = false;
-    }
+
+  refresh() {
+    this.cdr.detectChanges();
   }
 
 }

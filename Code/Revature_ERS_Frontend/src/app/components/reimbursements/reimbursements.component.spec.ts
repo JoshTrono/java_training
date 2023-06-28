@@ -35,4 +35,35 @@ describe('ReimbursementsComponent', () => {
     fixture.detectChanges();
     expect(component.reimbursements).toEqual(reimbursements);
   });
+
+  it('should set Admin to true if role is ADMIN', () => {
+    localStorage.setItem('role', 'ADMIN');
+    fixture.detectChanges();
+    expect(component.Admin).toBeTrue();
+  });
+
+  it('should set Admin to false if role is not ADMIN', () => {
+    localStorage.setItem('role', 'USER');
+    fixture.detectChanges();
+    expect(component.Admin).toBeFalse();
+  });
+
+  it('should create a reimbursement', () => {
+    const reimbursementForm = { amount: '100', description: 'Test' };
+    spyOn(reimbursementService, 'createReimbursement').and.returnValue(of({}));
+    spyOn(component, 'ngOnInit');
+    component.reimbursementForm = reimbursementForm;
+    component.createReimbursement();
+    expect(reimbursementService.createReimbursement).toHaveBeenCalledWith(reimbursementForm);
+    expect(component.ngOnInit).toHaveBeenCalled();
+  });
+
+  it('should delete a reimbursement', () => {
+    const id = 1;
+    spyOn(reimbursementService, 'deleteReimbursement').and.returnValue(of({}));
+    spyOn(component, 'ngOnInit');
+    component.deleteReimbursement(id);
+    expect(reimbursementService.deleteReimbursement).toHaveBeenCalledWith(id);
+    expect(component.ngOnInit).toHaveBeenCalled();
+  });
 });

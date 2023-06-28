@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { of } from 'rxjs';
@@ -11,18 +10,15 @@ describe('LoginComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent]
+      declarations: [ LoginComponent ],
+      providers: [ AuthenticationService ]
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     authenticationService = TestBed.inject(AuthenticationService);
-
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -49,6 +45,18 @@ describe('LoginComponent', () => {
     component.login();
     expect(localStorage.setItem).toHaveBeenCalledWith('token', response.token);
   });
+
+  it('should set role in local storage on successful login', () => {
+    const email = 'test@example.com';
+    const password = 'password';
+    const token = 'test-token';
+    const role = 'ADMIN';
+    spyOn(authenticationService, 'login').and.returnValue(of({ token }));
+    spyOn(authenticationService, 'getRole').and.returnValue(of(role));
+    spyOn(localStorage, 'setItem');
+    component.loginForm.email = email;
+    component.loginForm.password = password;
+    component.login();
+    expect(localStorage.setItem).toHaveBeenCalledWith('role', role);
+  });
 });
-
-

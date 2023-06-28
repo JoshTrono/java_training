@@ -1,0 +1,6 @@
+<form (ngSubmit)="register()" class="form-group">
+<input type="text" [(ngModel)]="registerForm.username" name="username" placeholder="Username" class="form-check form-check-inline">
+<input type="text" [(ngModel)]="registerForm.password" name="password" placeholder="Password" class="form-check form-check-inline">
+<input type="text" [(ngModel)]="registerForm.confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-check form-check-inline">
+<button type="submit" class="btn btn-secondary btn-sm">Register</button>
+</form>
