@@ -1,17 +1,19 @@
-<p>reimbursements-admin works!</p>
-<button (click)="allUsers()" class="btn btn-secondary btn-sm">Get Users</button>
-
-<form class="table table-striped" *ngIf="users">
-    <thead>
-      <tr>
-        <th class="col">ID</th>
-        <th class="col">Email</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <th>{{user.id}}</th>
-      <td>{{user.email}}</td>
+<button (click)="allUsers()" class="btn btn-primary btn-sm">Get Users</button>
+<div class="container">
+<table class="table table-striped" *ngIf="users">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Role</th>
     </tr>
-    </tbody>
-</form>
+  </thead>
+  <tbody class="md-6">
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

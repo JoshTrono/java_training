@@ -15,6 +15,7 @@
         <input type="text" class="form-control" id="inputDescription" [(ngModel)]="reimbursementForm.description" name="description" placeholder="Enter description">
       </div>
       <button type="submit" class="btn btn-primary">Create Reimbursement</button>
+      <button type="button" class="btn btn-primary" (click)="clickedButton('reimbursementAdmin')" *ngIf="!Admin">Admin Button</button>
     </form>
   </div>
   <div class="col-md-6">
