@@ -1,7 +1,15 @@
-<form (ngSubmit)="login()">
-  <span>
-  <input type="text" [(ngModel)]="loginForm.email" name="email" placeholder="Email">
-  <input type="password" [(ngModel)]="loginForm.password" name="password" placeholder="Password">
-  <button type="submit" class="btn btn-secondary btn-sm">Login</button>
-  </span>
-</form>
+<div class="row">
+  <div class="col-md-6">
+    <form (ngSubmit)="login()" class="mb-3">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" [(ngModel)]="loginForm.email" name="email" placeholder="Email" class="form-control">
+        <input type="password" [(ngModel)]="loginForm.password" name="password" placeholder="Password" class="form-control">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <!-- Add content for the second half of the screen here -->
+  </div>
+</div>
