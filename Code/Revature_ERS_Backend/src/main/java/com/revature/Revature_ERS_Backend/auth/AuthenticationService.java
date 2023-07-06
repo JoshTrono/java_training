@@ -53,4 +53,10 @@ public class AuthenticationService {
                 .build();
 
     }
+
+
+    public Object getRole(String token) {
+        User user = userRepository.findByEmail(jwtService.extractUsername(token)).orElseThrow();
+        return user.getRole();
+    }
 }

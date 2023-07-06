@@ -1,0 +1,17 @@
+h3 {
+  margin-top: 0;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.table td:last-child,
+.table th:last-child {
+  text-align: center;
+}

@@ -1,11 +1,13 @@
 package com.revature.Revature_ERS_Backend.auth;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.revature.Revature_ERS_Backend.entity.Role;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.repository.UserRepository;
 import com.revature.Revature_ERS_Backend.security.JwtService;
@@ -457,6 +459,259 @@ class AuthenticationControllerTest {
 
         // Assert
         // TODO: Add assertions on result
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    @Disabled("TODO: Complete this test")
+    void testGetRole() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        // TODO: Complete this test.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.IllegalArgumentException: A parent AuthenticationManager or a list of AuthenticationProviders is required
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        UserRepository userRepository = mock(UserRepository.class);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        JwtService jwtService = new JwtService();
+        (new AuthenticationController(new AuthenticationService(userRepository, passwordEncoder, jwtService,
+                new ProviderManager(new ArrayList<>())))).getRole("ABC123");
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    @Disabled("TODO: Complete this test")
+    void testGetRole2() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        // TODO: Complete this test.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.IllegalArgumentException: A parent AuthenticationManager or a list of AuthenticationProviders is required
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        UserRepository userRepository = mock(UserRepository.class);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        JwtService jwtService = new JwtService();
+        (new AuthenticationController(new AuthenticationService(userRepository, passwordEncoder, jwtService,
+                new ProviderManager(new ArrayList<>())))).getRole("foo");
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    @Disabled("TODO: Complete this test")
+    void testGetRole3() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        // TODO: Complete this test.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+        //       at com.revature.Revature_ERS_Backend.auth.AuthenticationController.extractToken(AuthenticationController.java:39)
+        //       at com.revature.Revature_ERS_Backend.auth.AuthenticationController.getRole(AuthenticationController.java:35)
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        ArrayList<AuthenticationProvider> providers = new ArrayList<>();
+        providers.add(new RunAsImplAuthenticationProvider());
+        ProviderManager authenticationManager = new ProviderManager(providers);
+        UserRepository userRepository = mock(UserRepository.class);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        (new AuthenticationController(
+                new AuthenticationService(userRepository, passwordEncoder, new JwtService(), authenticationManager)))
+                .getRole("ABC123");
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    @Disabled("TODO: Complete this test")
+    void testGetRole4() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        // TODO: Complete this test.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   io.jsonwebtoken.MalformedJwtException: JWT strings must contain exactly 2 period characters. Found: 0
+        //       at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:275)
+        //       at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529)
+        //       at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589)
+        //       at io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173)
+        //       at com.revature.Revature_ERS_Backend.security.JwtService.extractAllClaims(JwtService.java:63)
+        //       at com.revature.Revature_ERS_Backend.security.JwtService.extractClaim(JwtService.java:31)
+        //       at com.revature.Revature_ERS_Backend.security.JwtService.extractUsername(JwtService.java:23)
+        //       at com.revature.Revature_ERS_Backend.auth.AuthenticationService.getRole(AuthenticationService.java:59)
+        //       at com.revature.Revature_ERS_Backend.auth.AuthenticationController.getRole(AuthenticationController.java:35)
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        ArrayList<AuthenticationProvider> providers = new ArrayList<>();
+        providers.add(new RunAsImplAuthenticationProvider());
+        ProviderManager authenticationManager = new ProviderManager(providers);
+        UserRepository userRepository = mock(UserRepository.class);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        (new AuthenticationController(
+                new AuthenticationService(userRepository, passwordEncoder, new JwtService(), authenticationManager)))
+                .getRole(" ABC123");
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    void testGetRole5() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        UserRepository userRepository = mock(UserRepository.class);
+        when(userRepository.findByEmail(Mockito.<String>any())).thenReturn(Optional.of(new User()));
+        JwtService jwtService = mock(JwtService.class);
+        when(jwtService.extractUsername(Mockito.<String>any())).thenReturn("janedoe");
+
+        ArrayList<AuthenticationProvider> providers = new ArrayList<>();
+        providers.add(new RunAsImplAuthenticationProvider());
+        ProviderManager authenticationManager = new ProviderManager(providers);
+        ResponseEntity<Object> actualRole = (new AuthenticationController(
+                new AuthenticationService(userRepository, new BCryptPasswordEncoder(), jwtService, authenticationManager)))
+                .getRole(" ABC123");
+        assertNull(actualRole.getBody());
+        assertEquals(200, actualRole.getStatusCodeValue());
+        assertTrue(actualRole.getHeaders().isEmpty());
+        verify(userRepository).findByEmail(Mockito.<String>any());
+        verify(jwtService).extractUsername(Mockito.<String>any());
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    void testGetRole6() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        User user = mock(User.class);
+        when(user.getRole()).thenReturn(Role.USER);
+        UserRepository userRepository = mock(UserRepository.class);
+        when(userRepository.findByEmail(Mockito.<String>any())).thenReturn(Optional.of(user));
+        JwtService jwtService = mock(JwtService.class);
+        when(jwtService.extractUsername(Mockito.<String>any())).thenReturn("janedoe");
+
+        ArrayList<AuthenticationProvider> providers = new ArrayList<>();
+        providers.add(new RunAsImplAuthenticationProvider());
+        ProviderManager authenticationManager = new ProviderManager(providers);
+        ResponseEntity<Object> actualRole = (new AuthenticationController(
+                new AuthenticationService(userRepository, new BCryptPasswordEncoder(), jwtService, authenticationManager)))
+                .getRole(" ABC123");
+        assertTrue(actualRole.hasBody());
+        assertEquals(200, actualRole.getStatusCodeValue());
+        assertTrue(actualRole.getHeaders().isEmpty());
+        verify(userRepository).findByEmail(Mockito.<String>any());
+        verify(user).getRole();
+        verify(jwtService).extractUsername(Mockito.<String>any());
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    @Disabled("TODO: Complete this test")
+    void testGetRole7() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        // TODO: Complete this test.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.util.NoSuchElementException: No value present
+        //       at java.util.Optional.orElseThrow(Optional.java:377)
+        //       at com.revature.Revature_ERS_Backend.auth.AuthenticationService.getRole(AuthenticationService.java:59)
+        //       at com.revature.Revature_ERS_Backend.auth.AuthenticationController.getRole(AuthenticationController.java:35)
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        UserRepository userRepository = mock(UserRepository.class);
+        when(userRepository.findByEmail(Mockito.<String>any())).thenReturn(Optional.empty());
+        JwtService jwtService = mock(JwtService.class);
+        when(jwtService.extractUsername(Mockito.<String>any())).thenReturn("janedoe");
+
+        ArrayList<AuthenticationProvider> providers = new ArrayList<>();
+        providers.add(new RunAsImplAuthenticationProvider());
+        ProviderManager authenticationManager = new ProviderManager(providers);
+        (new AuthenticationController(
+                new AuthenticationService(userRepository, new BCryptPasswordEncoder(), jwtService, authenticationManager)))
+                .getRole(" ABC123");
+    }
+
+    /**
+     * Method under test: {@link AuthenticationController#getRole(String)}
+     */
+    @Test
+    void testGetRole8() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "bean" is null
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        AuthenticationService authenticationService = mock(AuthenticationService.class);
+        when(authenticationService.getRole(Mockito.<String>any())).thenReturn("Role");
+        ResponseEntity<Object> actualRole = (new AuthenticationController(authenticationService)).getRole(" ABC123");
+        assertEquals("Role", actualRole.getBody());
+        assertEquals(200, actualRole.getStatusCodeValue());
+        assertTrue(actualRole.getHeaders().isEmpty());
+        verify(authenticationService).getRole(Mockito.<String>any());
     }
 }
 

@@ -8,13 +8,19 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { ReimbursementsComponent } from './components/reimbursements/reimbursements.component';
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+import { ReimbursementsAdminComponent } from './components/reimbursements-admin/reimbursements-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    ReimbursementsComponent
+    ReimbursementsComponent,
+    RegisterComponent,
+    RegisterAdminComponent,
+    ReimbursementsAdminComponent
   ],
   imports: [
     BrowserModule,

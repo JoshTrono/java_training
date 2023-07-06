@@ -1,5 +1,13 @@
-<form (ngSubmit)="login()">
-  <input type="text" [(ngModel)]="loginForm.email" name="email" placeholder="Email">
-  <input type="password" [(ngModel)]="loginForm.password" name="password" placeholder="Password">
-  <button type="submit">Login</button>
-</form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form (ngSubmit)="login()" class="mb-3">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="loginForm.email" name="email" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+          <input type="password" [(ngModel)]="loginForm.password" name="password" placeholder="Password" class="form-control">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

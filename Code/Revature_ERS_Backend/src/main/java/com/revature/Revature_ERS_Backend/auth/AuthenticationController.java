@@ -30,5 +30,14 @@ public class AuthenticationController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
+    @GetMapping("/role")
+    public ResponseEntity<Object> getRole(@RequestHeader("Authorization") String token) {
+        return ResponseEntity.ok(authenticationService.getRole(extractToken(token)));
+    }
+
+    private String extractToken(String token) {
+        return token.split(" ")[1].trim();
+    }
+
 }
 
