@@ -13,6 +13,7 @@
       <td>{{user.id}}</td>
       <td>{{user.email}}</td>
       <td>{{user.role}}</td>
+      <td><button (click)="changePassword(user.id)" class="btn btn-danger">Change Password</button>  <button (click)="deleteUser(user.id); allUsers()" class="btn btn-danger">Delete</button></td>
     </tr>
   </tbody>
 </table>

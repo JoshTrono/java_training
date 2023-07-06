@@ -4,6 +4,7 @@ import com.revature.Revature_ERS_Backend.entity.Reimbursement;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.service.ReimbursementService;
 import com.revature.Revature_ERS_Backend.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +51,16 @@ public class AdminController {
         return userService.updateUser(id);
     }
 
-    public ResponseEntity deleteUser (@PathVariable Long id) {
+    @PutMapping("/user/{id}/password")
+    public ResponseEntity<HttpStatus> updateUserPassword (@PathVariable Long id, @RequestBody String password) {
+        // todo fix the input of password to extract 1 from {"password":"1"} and encrypt the password before storing
+        String newPassword = password.substring(13, password.length() - 2);
+        String encryptedPassword = userService.encryptPassword(newPassword);
+        return userService.updateUserPassword(id, encryptedPassword);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<HttpStatus> deleteUser (@PathVariable Long id) {
         return userService.deleteUser(id);
     }
 

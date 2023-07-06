@@ -14,8 +14,13 @@ export class ReimbursementsAdminComponent {
   allUsers() {
     this.admin.allUser().subscribe((data) => {
       this.users = data;
-      console.log(data);
-      console.log(this.users)
     })
+  }
+  deleteUser(id: any) {
+    this.admin.deleteUser(id);
+    this.allUsers();
+  }
+  changePassword(id: any) {
+    this.admin.changePassword(id);
   }
 }

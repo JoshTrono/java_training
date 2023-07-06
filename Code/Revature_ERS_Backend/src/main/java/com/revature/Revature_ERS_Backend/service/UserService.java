@@ -3,7 +3,10 @@ package com.revature.Revature_ERS_Backend.service;
 import com.revature.Revature_ERS_Backend.entity.Role;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.repository.UserRepository;
+import com.revature.Revature_ERS_Backend.security.JwtService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +15,11 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public ResponseEntity updateUser(Long id) {
@@ -37,8 +43,19 @@ public class UserService {
         return userRepository.findById(id).orElseThrow();
     }
 
-    public ResponseEntity deleteUser(Long id) {
+    public ResponseEntity<HttpStatus> deleteUser(Long id) {
         userRepository.deleteById(id);
-        return ResponseEntity.ok("User deleted");
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    public ResponseEntity<HttpStatus> updateUserPassword(Long id, String password) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setPassword(password);
+        userRepository.save(user);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    public String encryptPassword(String newPassword) {
+        return passwordEncoder.encode(newPassword);
     }
 }
