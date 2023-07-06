@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AdminService {
 
+
   api = "http://localhost:8080/api/v1/admin";
 
 
@@ -42,7 +43,7 @@ export class AdminService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    return this.http.get<any>(this.api + "/reimbursements", { headers: headers });
+    return this.http.get<any>(this.api + "/reimbursement", { headers: headers });
   }
   updateReimbursementStatus(id: number, status: string) {
     const headers = new HttpHeaders({
@@ -56,7 +57,7 @@ export class AdminService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    return this.http.delete<any>(this.api + "/reimbursements/" + id, { headers: headers });
+    return this.http.delete<any>(this.api + "/reimbursements/" + id, { headers: headers }).subscribe();
   }
   deleteUser(id: any) {
     const headers = new HttpHeaders({
@@ -66,5 +67,12 @@ export class AdminService {
     return this.http.delete<any>(this.api + "/user/" + id, { headers: headers }).subscribe(() => {
       this.allUser();
     });
+  }
+  getReimbursementById(id: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get<any>(this.api + "/reimbursement/" + id, { headers: headers });
   }
 }

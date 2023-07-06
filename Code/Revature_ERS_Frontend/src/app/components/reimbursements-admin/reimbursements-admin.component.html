@@ -1,6 +1,9 @@
 <button (click)="allUsers()" class="btn btn-primary btn-sm">Get Users</button>
+<button (click)="allReimbursements()" class="btn btn-primary btn-sm">Get Reimbursements</button>
 <div class="container">
-<table class="table table-striped" *ngIf="users">
+  <div class="row">
+    <div class="col-md-6">
+<table class="table table-striped col-md-6" *ngIf="users">
   <thead>
     <tr>
       <th>ID</th>
@@ -18,3 +21,30 @@
   </tbody>
 </table>
 </div>
+<div class="col-md-6">
+<table class="table table-striped col-md-6" *ngIf="reimbursements">
+  <thead>
+    <tr>
+      <th>Reimbursement ID</th>
+      <th>Employee email</th>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reimbursement of reimbursements">
+      <td>{{reimbursement.id}}</td>
+      <td>{{reimbursement.user.email}}</td>
+      <td>{{reimbursement.amount}}</td>
+      <td>{{reimbursement.description}}</td>
+      <td>{{reimbursement.status}}</td>
+      <td><button (click)="deleteReimbursement(reimbursement.id)" class="btn btn-danger">Delete</button><button (click)="changeStatus(reimbursement.id)" class="btn btn-danger">Change</button> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+

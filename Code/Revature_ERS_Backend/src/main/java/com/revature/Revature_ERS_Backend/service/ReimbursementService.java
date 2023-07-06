@@ -4,6 +4,7 @@ import com.revature.Revature_ERS_Backend.entity.Reimbursement;
 import com.revature.Revature_ERS_Backend.entity.User;
 import com.revature.Revature_ERS_Backend.repository.ReimbursementRepository;
 import com.revature.Revature_ERS_Backend.security.JwtService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -74,15 +75,30 @@ public class ReimbursementService {
         return null;
     }
 
-    public ResponseEntity deleteReimbursement(Long id, String s) {
+    public ResponseEntity<HttpStatus> deleteReimbursement(Long id, String s) {
         String username = jwtService.extractUsername(s);
         Long userId = userService.getUserId(username);
         User user = userService.getUserById(userId);
         Reimbursement reimbursement = reimbursementRepository.findById(id).orElseThrow();
         if (reimbursement.getUser().getId().equals(user.getId())) {
-            reimbursementRepository.delete(reimbursement);
-            return ResponseEntity.ok().build();
+            reimbursementRepository.deleteById(id);
+            return ResponseEntity.ok(HttpStatus.OK);
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(HttpStatus.UNAUTHORIZED);
+    }
+
+    /**
+     * Delete a reimbursement
+     * This is for the admin part of just deleting a reimbursement only needs the id.
+     * @param id Reimbursement id
+     * @return HTTP status
+     */
+    public ResponseEntity<HttpStatus> deleteReimbursement(Long id) {
+          reimbursementRepository.deleteById(id);
+          return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    public Reimbursement getReimbursementById(Long id) {
+        return reimbursementRepository.findById(id).orElseThrow();
     }
 }

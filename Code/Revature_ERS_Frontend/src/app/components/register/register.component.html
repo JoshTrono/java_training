@@ -32,6 +32,7 @@
           <input type="password"class="form-control" id="confirmPassword" [(ngModel)]="registerForm.confirmPassword" name="confirmPassword" />
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
+        <div *ngIf="status" class="status">{{ status }}</div>
       </form>
     </div>
   </div>

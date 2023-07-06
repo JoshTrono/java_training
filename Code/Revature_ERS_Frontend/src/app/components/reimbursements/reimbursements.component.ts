@@ -36,7 +36,6 @@ export class ReimbursementsComponent {
   createReimbursement() {
     let observable2 = this.reimbursementService.createReimbursement(this.reimbursementForm);
     observable2.subscribe((response: any) => {
-      console.log(response);
       this.ngOnInit();
     });
 

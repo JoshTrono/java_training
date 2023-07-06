@@ -31,6 +31,17 @@ public class AdminController {
         return reimbursementService.getReimbursements();
     }
 
+    @GetMapping("/reimbursement/{id}")
+    public Reimbursement getReimbursementById(@PathVariable Long id) {
+        return reimbursementService.getReimbursementById(id);
+    }
+
+
+    @DeleteMapping("/reimbursement/{id}")
+    public ResponseEntity<HttpStatus> deleteReimbursement(@PathVariable Long id) {
+        return reimbursementService.deleteReimbursement(id);
+    }
+
     /**
      * This is to get all users only for admins
      * @return list of users
